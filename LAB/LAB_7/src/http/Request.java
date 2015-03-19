@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 public class Request {
 	public enum Method { HEAD, GET, PUT, POST, DELETE };
 	
-	static final Pattern 
-		request = Pattern.compile("(\\w+) (\\S+) HTTP/\\d", Pattern.CASE_INSENSITIVE),
-		sep = Pattern.compile("\\s*:\\s*");
+	static final Pattern request = Pattern.compile("(\\w+) (\\S+) HTTP/\\d", Pattern.CASE_INSENSITIVE)
+            ,sep = Pattern.compile("\\s*:\\s*")
+            ,method_match = Pattern.compile("(GET) (\\S+) HTTP/\\d");
 
 	Method method;
 	String url;
@@ -21,10 +21,16 @@ public class Request {
 		if (!matcher.find())
 			throw new ProtocolException("Illegal request");
 
-	/*
-		Match with available methods and set the method ( though many could be matched,only respond to GET requests here)
-		set the url to return.
-		*/
+        matcher = method_match.matcher(req1);
+        if (matcher.find()) {
+            System.out.println("GET");
+            method = Method.GET;
+            url = sep.toString();
+        }
+        /*
+        Match with available methods and set the method ( though many could be matched,only respond to GET requests here)
+        set the url to return.
+        */
 		
 	}
 

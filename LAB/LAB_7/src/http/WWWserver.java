@@ -26,6 +26,8 @@ public class WWWserver extends Thread {
 
 			/* create a new response according to the request. 
 			and send it back to the client. Use the methods provided in FileOp class to get the file status info */
+
+            //Response new_response = new Response();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
