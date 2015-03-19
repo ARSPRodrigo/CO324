@@ -1,7 +1,5 @@
 package http;
 import java.net.ProtocolException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -34,10 +32,7 @@ public class Request {
 	public String toString() {
 		StringBuffer buf = new StringBuffer();
 		buf.append(method).append('\t').append(url);
-		
-		for (Entry<String,String> e: headers.entrySet())
-			buf.append('\n').append(e);
-		
+
 		return buf.toString();
 	}
 }
