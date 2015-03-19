@@ -9,8 +9,7 @@ public class Request {
 	public enum Method { HEAD, GET, PUT, POST, DELETE };
 	
 	static final Pattern request = Pattern.compile("(\\w+) (\\S+) HTTP/\\d", Pattern.CASE_INSENSITIVE)
-            ,sep = Pattern.compile("\\s*:\\s*")
-            ,method_match = Pattern.compile("(GET) (\\S+) HTTP/\\d");
+            ,sep = Pattern.compile("\\s*:\\s*");
 
 	Method method;
 	String url;
@@ -21,11 +20,9 @@ public class Request {
 		if (!matcher.find())
 			throw new ProtocolException("Illegal request");
 
-        matcher = method_match.matcher(req1);
-        if (matcher.find()) {
-            System.out.println("GET");
+        if (matcher.group(1).equals("GET")) {
             method = Method.GET;
-            url = sep.toString();
+            url = matcher.group(2);
         }
         /*
         Match with available methods and set the method ( though many could be matched,only respond to GET requests here)
