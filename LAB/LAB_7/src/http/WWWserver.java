@@ -36,7 +36,11 @@ public class WWWserver extends Thread {
             }else {
                 new_response = new Response(Code.OK,new_fileOp.get_content(r.url));
             }
+
+            /* print response in console */
             System.out.println(new_response.toString());
+
+            /* print response to output stream */
 			sout.print(new_response.toString());
 
 		} catch (IOException e) {
