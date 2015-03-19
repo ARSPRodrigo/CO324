@@ -19,8 +19,8 @@ public class Response {
 		
 		@Override
 		public String toString() {
-			return Integer.toString(code) + " " + message;
-		}
+            return Integer.toString(code) + " " + message;
+        }
 	}
 	
 	final static String version = "HTTP/1.0";
@@ -33,6 +33,10 @@ public class Response {
 	public Response(Code code,  String body) {
 		this.code = code;
 		this.body = new StringBuffer(body);
+        if (code.code == 200) {
+            headers.put("Content-Type", "text/html");
+            headers.put("Content-Length",body.length()+"");
+        }
 	}
 	
 	@Override
