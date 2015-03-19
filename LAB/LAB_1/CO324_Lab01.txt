@@ -1,0 +1,43 @@
+Exercise 3:
+	Consider the server code. Which of these are recoverable? And which of them are non-recoverable?
+
+			SocketException :— recoverable and aloso non-recoverable (A SocketException is thrown when an error occurs while a socket is being used. This can be recover by trying aganin, and also some times it does not work that way.)
+			IOException :— recoverable
+
+
+Exercise 4:
+	The server receives one packet and sends one packet at each iteration of the "for" loop. If the program throws an exception at receiving a packet, what will happen to the "for" loop?
+
+			According to this code the "for" loop will stop. because the catch of the exception is outside the loop.
+
+	If this error might be temporary and could affect only one or few packets received, do you think that this is the suitable behavior for the server?
+
+			No. Because if the loop stops the server cannot recieve or send next packets.
+
+	If not, modify the server code such that the server deals with such problems.
+
+			for( ;; ){
+            
+	            try{
+		            // Receive a packet (blocking)
+		            socket.receive( packet ) ;
+
+		            // Print the packet
+		            System.out.println( packet.getAddress() + " " + packet.getPort() + ": " + new String(packet.getData()) ) ;
+
+		            // Return the packet to the sender
+		            socket.send( packet ) ;
+	       		}
+	       		catch (IOException e){
+	       			System.out.println(e);
+	       		}
+	       		catch (Exception e){
+	       			System.out.println(e);
+	       		}
+        	} 
+
+Exercise 5:
+	What is the disadvantage of placing the socket.close() function at the end of the try block in the client code?
+	Use the finally keyword to do necessary cleanups for the client code.
+
+		"socket.close()" is a cleanup-type statement, but if an exception occurs and code breaks before it comes to the end of the try block the socket will not close. So that socket cannot be used untill colsed.

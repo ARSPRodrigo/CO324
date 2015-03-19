@@ -1,0 +1,43 @@
+CO324 Lab 03
+Message Framing in Transmission Control
+Protocol (TCP)
+
+E/11/343
+Rodrigo A.R.S.P
+
+Exercise 1:
+Compile and run the given code. FrameServer.java and FrameClient.java
+Explain what will happen if the client did not append the delimiter at the end of the message.
+
+	If client did not append the delimiter at the end of the code server cannot print the sent message because that
+	the server is looking for delimeter to end the sentence and it checks until it finds the delimeter and does not
+	print until it found.
+
+Explain what will happen if the user decided to have a dash (-) character in one of the messages entered.
+	
+	The server defined delimeter is dash (-) so if the user enters a dash at the end of the message it will work fine.
+	Because server finds the delimeter that it is looking for at the end and print the message.
+
+Exercise2:
+1.What is the delimiter used for framing in the following code?
+
+	Socket clientSocket = serverSocket.accept();
+	Scanner in = new Scanner ( cilentSocket.getInputStream() );
+	String message;
+	message = in.next();
+	if(message != null)
+		System.out.println("message: "+message);
+
+	Inthis code there isn't any delimeter defined. So the client automatically get the new line charactor (\n), space and carrage return as delimeters or terminating charactors.
+
+2.Now consider the FrameClient2.java code. This client has been written in order to allow a user to send
+multi-line message ( i.e. a text message that has newline characters in the middle ). The corresponding 
+server is FrameServer2.java. Edit both server and client such that the user could enter any message with 
+any character in the message. (Hint : Use non-printing characters for this exercise. A non-printing character
+is a character that a user cannot enter through the keyboard. For an example, “end of text” character 
+(with the Unicode value 3) cannot be typed in with a keyboard. You can add this character to a string as 
+follows:String line = “hello world” + '\u0003'; )
+
+	In this code we have to append the new delimeter after client enter 'End' at the client code and set the server code to
+	check the delimeter which append by the client code.
+

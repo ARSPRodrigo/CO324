@@ -1,0 +1,3 @@
+Note that the FanControl server is multithreaded. What would happen if multiple clients connected and sent control requests at the same time?
+
+Each time a new client connected a new object is assigned to him and there will not be any data races occur.
