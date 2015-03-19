@@ -45,7 +45,7 @@ public class Response {
 		buf.append(version).append(' ').append(code);
 		
 		for (Entry<String,String> e: headers.entrySet())
-			buf.append('\n').append(e);
+			buf.append('\n').append(e.getKey()+":"+e.getValue());
 		
 		buf.append(sep).append(body);
 		return buf.toString();
