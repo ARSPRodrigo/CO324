@@ -14,8 +14,8 @@ public class Request {
 		request = Pattern.compile("(\\w+) (\\S+) HTTP/\\d", Pattern.CASE_INSENSITIVE),
 		sep = Pattern.compile("\\s*:\\s*");
 
-	final Method method;
-	final String url;
+	Method method;
+	String url;
 	
 	public Request(Scanner in) throws ProtocolException {
 		String req1 = in.nextLine();
