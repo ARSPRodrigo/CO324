@@ -28,7 +28,6 @@ public class Request {
 		set the url to return.
 		*/
 		
-		}
 	}
 
 	@Override

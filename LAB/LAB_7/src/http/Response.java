@@ -7,7 +7,7 @@ public class Response {
 	public enum Code {
 		OK(200, "OK"),
 		FORBIDDEN(403,"Forbidden"),	
-		NOTFOUND(404, "Not Found"),
+		NOTFOUND(404, "Not Found");
 		
 		int code;
 		String message;
