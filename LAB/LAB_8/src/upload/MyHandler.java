@@ -23,11 +23,10 @@ enum MyHandler implements HttpHandler {
 				//If we can determine the file's MIME type, set content-type
 		        String type =  Files.probeContentType(path); 
 				if (type!=null) {
-					List l = new ArrayList();
-					l.add(type);
-					t.getRequestHeaders().put("Content-Type", l);
-				}				
-				//copy(in, out);
+                    List l = new ArrayList();
+                    l.add(type);
+                    t.getRequestHeaders().put("Content-Type", l);
+                }
 		        t.sendResponseHeaders(200, Files.size(path));
                 copy(in, out);
 			} catch (IOException e) {
@@ -43,8 +42,10 @@ enum MyHandler implements HttpHandler {
 
             try (InputStream in = t.getRequestBody();
                  OutputStream out = Files.newOutputStream(path) ){
-                copy(in, out);
+                 t.sendResponseHeaders(200,-1);
+                 copy(in, out);
             } catch (IOException e) {
+                t.sendResponseHeaders(400, -1);
                 e.printStackTrace();
             }
 		}	
