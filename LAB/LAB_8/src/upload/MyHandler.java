@@ -42,8 +42,8 @@ enum MyHandler implements HttpHandler {
 
             try (InputStream in = t.getRequestBody();
                  OutputStream out = Files.newOutputStream(path) ){
-                 t.sendResponseHeaders(200,-1);
                  copy(in, out);
+                t.sendResponseHeaders(200,-1);
             } catch (IOException e) {
                 t.sendResponseHeaders(400, -1);
                 e.printStackTrace();
