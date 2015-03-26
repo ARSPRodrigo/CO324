@@ -40,6 +40,13 @@ enum MyHandler implements HttpHandler {
 		public void handle(HttpExchange t) throws IOException {
             String p = t.getRequestURI().getPath();
             Path path = Paths.get(ROOT, p);
+
+            try (InputStream in = t.getRequestBody();
+                 OutputStream out = Files.newOutputStream(path) ){
+                copy(in, out);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 		}	
 	};
 	
