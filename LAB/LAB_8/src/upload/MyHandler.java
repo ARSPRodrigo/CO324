@@ -38,7 +38,8 @@ enum MyHandler implements HttpHandler {
 	},
 	PUT {		
 		public void handle(HttpExchange t) throws IOException {
-//	       TODO: complete this method
+            String p = t.getRequestURI().getPath();
+            Path path = Paths.get(ROOT, p);
 		}	
 	};
 	
