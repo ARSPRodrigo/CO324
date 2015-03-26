@@ -27,8 +27,9 @@ enum MyHandler implements HttpHandler {
 					l.add(type);
 					t.getRequestHeaders().put("Content-Type", l);
 				}				
-				copy(in, out);				 
+				//copy(in, out);
 		        t.sendResponseHeaders(200, Files.size(path));
+                copy(in, out);
 			} catch (IOException e) {
 		        t.sendResponseHeaders(400, -1);
 				e.printStackTrace();
@@ -41,7 +42,7 @@ enum MyHandler implements HttpHandler {
 		}	
 	};
 	
-	static final String ROOT ="/Users/ziyan/CO324-NAWAD";
+	static final String ROOT ="C:/Users/Prasanna/OneDrive";
 	
 	static void copy(InputStream in, OutputStream out) throws IOException {
 		int len; 
